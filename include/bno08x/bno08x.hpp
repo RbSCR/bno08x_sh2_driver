@@ -55,6 +55,9 @@ public:
   //   https://github.com/sparkfun/SparkFun_BNO08x_Arduino_Library/pull/15
   bool setReorientation(sh2_Quaternion_t * pOrientation);
 
+  bool setCalibrationConfig(uint8_t sensors);
+  bool getCalibrationConfig(uint8_t * pSensors);
+
   sh2_ProductIds_t prodIds;  ///< The product IDs returned by the sensor
 
 protected:

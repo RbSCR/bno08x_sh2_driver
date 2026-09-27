@@ -265,3 +265,50 @@ bool BNO08x::setReorientation(sh2_Quaternion_t * pOrientation) {
 
   return true;
 }
+
+/**
+ * @brief Set dynamic calibration for certain sensors
+ *
+ *
+ * Also see par. 2.2 of the Calibration Procedure document 1000-4044
+ *
+ * @param sensors   Bit mask to configure which sensors are affected.
+ *                     0x01 : Accel
+ *                     0x02 : Gyro
+ *                     0x04 : Mag
+ *                     0x08 : Planar
+ * @return          true: success false: failure
+ */
+bool BNO08x::setCalibrationConfig(uint8_t sensors)
+{
+  int status = sh2_setCalConfig(sensors);
+
+  if (status != SH2_OK) {
+    return false;
+  }
+
+  return true;
+}
+
+
+/**
+ * @brief Get dynamic calibration configuration settings
+ *
+ * @param[out] pSensors   pointer to Bit mask
+ *                            0x01 : Accel
+ *                            0x02 : Gyro
+ *                            0x04 : Mag
+ *                            0x08 : Planar
+ * @return                true: success false: failure
+ */
+bool BNO08x::getCalibrationConfig(uint8_t * pSensors)
+{
+  int status = sh2_getCalConfig(pSensors);
+
+  if (status != SH2_OK) {
+    return false;
+  }
+
+  return true;
+}
+
